@@ -29,8 +29,8 @@ taxonomies:
 
 menu:
   main:
-    - name: Archive
-      url: archives
+    - name: All Posts
+      url: allpost
       weight: 5
     - name: Search
       url: search/
@@ -75,8 +75,8 @@ params:
     # imageWidth: 120
     # imageHeight: 120
     buttons:
-      - name: Archives
-        url: archives
+      - name: All Post
+        url: allposts
       - name: Tags
         url: tags
 
