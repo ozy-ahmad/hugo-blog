@@ -1,8 +1,8 @@
 # If your site is in 'https', then make sure your base url isn't written using 'http' otherwise your sitemap would
 # contain http (as opposeed to https) URLs. This would affect Google indexing of your URLs.
-baseURL: "https://ahmadfakhrozy.com/"
+baseURL: "http://ahmadfakhrozy.com/"
 title: Ahmad Fakhrozy
-copyright: "© [Copyright Ahmad Fakhrozy](https://github.com/adityatelange/hugo-PaperMod/graphs/contributors)"
+copyright: "© [Copyright Ahmad Fakhrozy](http://github.com/adityatelange/hugo-PaperMod/graphs/contributors)"
 theme: [PaperMod]
 
 enableInlineShortcodes: true
