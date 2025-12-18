@@ -209,7 +209,6 @@
 <p>Using an <strong>Xbox Wireless Controller (Series X|S, USB‑C)</strong> with the <strong>official Microsoft USB dongle</strong> on Linux is not plug‑and‑play.</p>
 <p>Unlike Bluetooth, the dongle requires runtime firmware and a user‑space daemon called <code>xow</code>.</p>
 <p>This note documents the <strong>minimal, working setup</strong> that finally made it work.</p>
-<hr>
 <h2 id="environment">Environment<a hidden class="anchor" aria-hidden="true" href="#environment">#</a></h2>
 <ul>
 <li>OS: Arch Linux (Omarchy)</li>
@@ -219,7 +218,6 @@
 <li>Desktop: Hyprland</li>
 <li>Games: Steam</li>
 </ul>
-<hr>
 <h2 id="controller-details">Controller Details<a hidden class="anchor" aria-hidden="true" href="#controller-details">#</a></h2>
 <ul>
 <li>
@@ -238,7 +236,6 @@
 </ul>
 </li>
 </ul>
-<hr>
 <h2 id="the-problem">The Problem<a hidden class="anchor" aria-hidden="true" href="#the-problem">#</a></h2>
 <p>Symptoms I hit:</p>
 <ul>
@@ -267,7 +264,6 @@
 </li>
 </ul>
 <p>Sometimes the service looked <em>active</em>, but nothing actually worked.</p>
-<hr>
 <h2 id="why-this-happens">Why This Happens<a hidden class="anchor" aria-hidden="true" href="#why-this-happens">#</a></h2>
 <p><code>xow</code> is <strong>not a kernel driver</strong>.</p>
 <p>It:</p>
@@ -278,15 +274,13 @@
 <li>Emulates an Xbox controller for Linux input devices</li>
 </ul>
 <p>If firmware is missing or pairing order is wrong, the dongle stays unusable.</p>
-<hr>
 <h2 id="the-fix">The Fix<a hidden class="anchor" aria-hidden="true" href="#the-fix">#</a></h2>
 <h3 id="1-install-xow">1. Install xow<a hidden class="anchor" aria-hidden="true" href="#1-install-xow">#</a></h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone https://github.com/medusalix/xow.git
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> xow
 </span></span><span class="line"><span class="cl">make
 </span></span><span class="line"><span class="cl">sudo make install
-</span></span></code></pre></div><hr>
-<h3 id="2-install-firmware-required">2. Install firmware (required)<a hidden class="anchor" aria-hidden="true" href="#2-install-firmware-required">#</a></h3>
+</span></span></code></pre></div><h3 id="2-install-firmware-required">2. Install firmware (required)<a hidden class="anchor" aria-hidden="true" href="#2-install-firmware-required">#</a></h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sed <span class="s2">&#34;s|@prefix@|/usr/local|g&#34;</span> install/firmware.sh.in &gt; /tmp/xow-firmware.sh
 </span></span><span class="line"><span class="cl">chmod +x /tmp/xow-firmware.sh
 </span></span><span class="line"><span class="cl">sudo /tmp/xow-firmware.sh
@@ -294,8 +288,7 @@
 <pre tabindex="0"><code>/lib/firmware/xow_dongle.bin
 </code></pre><p>Verify:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ls -l /lib/firmware/xow_dongle.bin
-</span></span></code></pre></div><hr>
-<h3 id="3-systemd-service-configuration">3. systemd Service Configuration<a hidden class="anchor" aria-hidden="true" href="#3-systemd-service-configuration">#</a></h3>
+</span></span></code></pre></div><h3 id="3-systemd-service-configuration">3. systemd Service Configuration<a hidden class="anchor" aria-hidden="true" href="#3-systemd-service-configuration">#</a></h3>
 <p>This is the working <code>xow</code> service file I ended up using.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[Unit]</span>
 </span></span><span class="line"><span class="cl"><span class="na">Description</span><span class="o">=</span><span class="s">Xbox One Wireless Dongle Driver</span>
@@ -312,8 +305,7 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo <span class="nv">SYSTEMD_EDITOR</span><span class="o">=</span>nvim systemctl edit --full xow
 </span></span></code></pre></div><p>Enable and start:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sudo systemctl <span class="nb">enable</span> xow --now
-</span></span></code></pre></div><hr>
-<h3 id="4-pair-using-usb-important">4. Pair Using USB (Important)<a hidden class="anchor" aria-hidden="true" href="#4-pair-using-usb-important">#</a></h3>
+</span></span></code></pre></div><h3 id="4-pair-using-usb-important">4. Pair Using USB (Important)<a hidden class="anchor" aria-hidden="true" href="#4-pair-using-usb-important">#</a></h3>
 <p>For Xbox Series X|S controllers, pairing <strong>once via USB</strong> is required.</p>
 <p>Steps:</p>
 <ol>
@@ -343,7 +335,6 @@
 </li>
 </ol>
 <p>After this, wireless pairing works normally.</p>
-<hr>
 <h2 id="verify">Verify<a hidden class="anchor" aria-hidden="true" href="#verify">#</a></h2>
 <ul>
 <li>
@@ -367,7 +358,6 @@
 <p>Games receive input</p>
 </li>
 </ul>
-<hr>
 <h2 id="lessons-learned">Lessons Learned<a hidden class="anchor" aria-hidden="true" href="#lessons-learned">#</a></h2>
 <ul>
 <li>The official Xbox dongle requires firmware (xow or xone)</li>
@@ -375,15 +365,13 @@
 <li>USB pairing once is necessary for Series X|S controllers</li>
 <li>Linux exposes complexity that Windows hides</li>
 </ul>
-<hr>
 <h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
 <pre tabindex="0"><code>Install xow
 Install firmware
 Enable service
 Pair once via USB
 Use wireless after
-</code></pre><hr>
-<h2 id="references">References<a hidden class="anchor" aria-hidden="true" href="#references">#</a></h2>
+</code></pre><h2 id="references">References<a hidden class="anchor" aria-hidden="true" href="#references">#</a></h2>
 <ul>
 <li>xow: <a href="https://github.com/medusalix/xow">https://github.com/medusalix/xow</a></li>
 <li>Xbox Controller: <a href="https://www.xbox.com/en-US/accessories/controllers/xbox-wireless-controller-usb-c">https://www.xbox.com/en-US/accessories/controllers/xbox-wireless-controller-usb-c</a></li>

@@ -17,7 +17,7 @@ Unlike Bluetooth, the dongle requires runtime firmware and a user‑space daemon
 
 This note documents the **minimal, working setup** that finally made it work.
 
----
+
 
 ## Environment
 
@@ -29,7 +29,7 @@ This note documents the **minimal, working setup** that finally made it work.
 - Games: Steam
 
 
----
+
 
 ## Controller Details
 
@@ -43,7 +43,7 @@ This note documents the **minimal, working setup** that finally made it work.
     - Xbox Wireless (2.4 GHz via official dongle)
         
 
----
+
 
 ## The Problem
 
@@ -66,7 +66,7 @@ Symptoms I hit:
 
 Sometimes the service looked _active_, but nothing actually worked.
 
----
+
 
 ## Why This Happens
 
@@ -81,7 +81,7 @@ It:
 
 If firmware is missing or pairing order is wrong, the dongle stays unusable.
 
----
+
 
 ## The Fix
 
@@ -94,7 +94,7 @@ make
 sudo make install
 ```
 
----
+
 
 ### 2. Install firmware (required)
 
@@ -116,7 +116,7 @@ Verify:
 ls -l /lib/firmware/xow_dongle.bin
 ```
 
----
+
 
 ### 3. systemd Service Configuration
 
@@ -148,7 +148,7 @@ Enable and start:
 sudo systemctl enable xow --now
 ```
 
----
+
 
 ### 4. Pair Using USB (Important)
 
@@ -177,7 +177,7 @@ Steps:
 
 After this, wireless pairing works normally.
 
----
+
 
 ## Verify
 
@@ -194,7 +194,7 @@ After this, wireless pairing works normally.
 - Games receive input
     
 
----
+
 
 ## Lessons Learned
 
@@ -203,8 +203,6 @@ After this, wireless pairing works normally.
 - USB pairing once is necessary for Series X|S controllers
 - Linux exposes complexity that Windows hides
 
-
----
 
 ## TL;DR
 
@@ -216,7 +214,6 @@ Pair once via USB
 Use wireless after
 ```
 
----
 
 ## References
 
