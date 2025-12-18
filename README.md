@@ -1,39 +1,35 @@
 # Hugo Blog Sync
 
-Sync Obsidian posts and images to Hugo, then deploy to GitHub.
+Sync Obsidian posts and images to Hugo, compress images, and deploy to GitHub.
 
-## Usage
+## Quick Start
 
 ```bash
 ./sync.sh
 ```
 
-## What It Does
-
-```mermaid
-flowchart LR
-    A[Obsidian Posts] -->|rsync| B[Hugo Posts]
-    C[Obsidian Attachments] -->|rsync| D[Hugo Images]
-    B --> E[Convert Image Links]
-    D --> E
-    E --> F[Hugo Build]
-    F --> G[Git Push Main]
-```
-
 ## Configuration
 
-| Setting | Path |
-|---------|------|
-| Obsidian Posts | `/home/ozy/Obsidian/SecondBrain/Posts` |
-| Obsidian Attachments | `/home/ozy/Obsidian/SecondBrain/attachments` |
-| Hugo Posts | `content/posts` |
-| Hugo Images | `static/images` |
+Edit these variables in `sync.sh`:
 
-## Image Conversion
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `OBSIDIAN_POSTS` | Obsidian posts folder | `/home/ozy/Obsidian/SecondBrain/Posts` |
+| `OBSIDIAN_ATTACHMENTS` | Obsidian images folder | `/home/ozy/Obsidian/SecondBrain/attachments` |
+| `HUGO_POSTS` | Hugo posts destination | `/home/ozy/git/hugo-blog/content/posts` |
+| `HUGO_IMAGES` | Hugo images destination | `/home/ozy/git/hugo-blog/static/images` |
+| `MYREPO` | GitHub repository URL | `https://github.com/ozy-ahmad/hugo-blog` |
+| `BRANCH` | Git branch to push | `main` |
 
-The script automatically converts Obsidian image syntax to Hugo format:
+## Features
 
-| Obsidian | Hugo |
-|----------|------|
-| `![[photo.png]]` | `![photo](/images/photo.png)` |
-| `![[photo.png\|My Photo]]` | `![My Photo](/images/photo.png)` |
+- ✅ Syncs posts from Obsidian to Hugo
+- ✅ Syncs and compresses images (max 1200px, ~50% smaller)
+- ✅ Converts `![[image.png]]` → `![image](/images/image.png)`
+- ✅ Builds Hugo site
+- ✅ Commits and pushes to GitHub
+
+## Requirements
+
+- git, rsync, python3, hugo
+- python-pillow (auto-installed via pacman)
