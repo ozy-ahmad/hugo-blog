@@ -185,6 +185,7 @@ def compress_images(images_dir, max_width=1200, quality=85):
 # =============================================================================
 
 def convert_obsidian_images(content):
+    import urllib.parse
     pattern = r'!\[\[([^\]|]+)(?:\|([^\]]+))?\]\]'
     
     def replace_image(match):
@@ -192,7 +193,9 @@ def convert_obsidian_images(content):
         alt_text = match.group(2)
         filename = os.path.basename(filepath)
         alt = alt_text.strip() if alt_text else os.path.splitext(filename)[0]
-        return f'![{alt}](/images/{filename})'
+        # URL-encode the filename to handle spaces and special characters
+        encoded_filename = urllib.parse.quote(filename)
+        return f'![{alt}](/images/{encoded_filename})'
     
     return re.sub(pattern, replace_image, content)
 

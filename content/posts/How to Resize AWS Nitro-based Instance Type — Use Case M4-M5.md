@@ -9,7 +9,7 @@ categories: ["blog"]
 summary: "The new generation EC2 service is nitro based instance which require some configuration. In this tutorial I will go through all the requirement that you need to check or do."
 
 ---
-				![Pasted image 20251218222004](/images/Pasted image 20251218222004.png)
+				![Pasted image 20251218222004](/images/Pasted%20image%2020251218222004.png)
 
 EC2 server is virtual machine which running on hypervisor under AWS hardware. The new generation EC2 service is nitro based instance which require some configuration. In this tutorial I will go through all the requirement that you need to check or do.
 
@@ -35,9 +35,9 @@ basic understanding of AWS EC2 service, AWS CLI and Linux bash command.
 
 ## Create the AMI of the current system
 
-![Pasted image 20251218222057](/images/Pasted image 20251218222057.png)
+![Pasted image 20251218222057](/images/Pasted%20image%2020251218222057.png)
 
-![Pasted image 20251218222120](/images/Pasted image 20251218222120.png)
+![Pasted image 20251218222120](/images/Pasted%20image%2020251218222120.png)
 By creating the AMI we can do a rollback if the changes that we made is not working as we expect. You can put the Image name and description and go ahead to create the Image. It will take a few minutes depends on the size of EBS volume attached to the instance.
 
 ## Download and Run the NitroInstanceChecks script
@@ -64,19 +64,19 @@ https://github.com/awslabs/aws-support-tools/tree/master/EC2/NitroInstanceChecks
 ```bash
 curl -o nitro_check_script.sh https://raw.githubusercontent.com/awslabs/aws-support-tools/master/EC2/NitroInstanceChecks/nitro_check_script.sh
 ````
-![Pasted image 20251218222213](/images/Pasted image 20251218222213.png)
+![Pasted image 20251218222213](/images/Pasted%20image%2020251218222213.png)
 ### Make the script executable
 
 ```bash
 chmod +x nitro_check_script.sh
 ```
-![Pasted image 20251218222232](/images/Pasted image 20251218222232.png)
+![Pasted image 20251218222232](/images/Pasted%20image%2020251218222232.png)
 ### Execute the script
 
 ```bash
 sudo ./nitro_check_script.sh
 ```
-![Pasted image 20251218222256](/images/Pasted image 20251218222256.png)
+![Pasted image 20251218222256](/images/Pasted%20image%2020251218222256.png)
 ## Check the ENA-attribute support is enable on your instance
 
 ```bash
