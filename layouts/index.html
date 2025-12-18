@@ -1,0 +1,66 @@
+{{- define "main" }}
+
+{{- /* Profile Section */ -}}
+{{- if site.Params.profileMode.enabled }}
+<article class="first-entry home-info" style="text-align: center;">
+    {{- $imageUrl := site.Params.profileMode.imageUrl }}
+    {{- if $imageUrl }}
+    <figure style="margin-bottom: 1rem; display: flex; justify-content: center;">
+        <img draggable="false" src="{{ $imageUrl }}" alt="{{ site.Params.profileMode.imageTitle }}"
+            style="border-radius: 50%; width: {{ site.Params.profileMode.imageWidth | default 120 }}px; height: {{ site.Params.profileMode.imageHeight | default 120 }}px; object-fit: cover;" />
+    </figure>
+    {{- end }}
+    <header class="entry-header">
+        <h1>{{ site.Params.profileMode.title | default site.Title }}</h1>
+    </header>
+    <div class="entry-content">
+        <p>{{ site.Params.profileMode.subtitle | markdownify }}</p>
+    </div>
+    <footer class="entry-footer">
+        {{ partial "social_icons.html" site.Params.profileMode }}
+    </footer>
+    {{- with site.Params.profileMode.buttons }}
+    <nav class="buttons" style="margin-top: 1rem;">
+        {{- range . }}
+        <a class="button" href="{{ .url | absURL }}" role="button">{{ .name }}</a>
+        {{- end }}
+    </nav>
+    {{- end }}
+</article>
+{{- end }}
+
+{{- /* Recent Posts Section */ -}}
+<h2 style="margin-top: 2rem; margin-bottom: 1rem; text-align: center;">Recent Posts</h2>
+
+{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- $limit := site.Params.profileMode.recentLimit | default 5 }}
+{{- range (first $limit $pages) }}
+{{- $class := "post-entry" }}
+<article class="{{ $class }}">
+    {{- $isHidden := (.Params.cover.hidden | default site.Params.cover.hiddenInList) }}
+    {{- partial "cover.html" (dict "cxt" . "IsHome" true "isHidden" $isHidden) }}
+    <header class="entry-header">
+        <h2 class="entry-hint-parent">
+            {{- .Title }}
+            {{- if .Draft }}<span class="entry-hint" title="Draft"><svg xmlns="http://www.w3.org/2000/svg" height="20"
+                    viewBox="0 -960 960 960" width="20" fill="currentColor">
+                    <path
+                        d="M160-410v-60h300v60H160Zm0-165v-60h470v60H160Zm0-165v-60h470v60H160Zm360 580v-123l221-220q9-9 20-13t22-4q12 0 23 4.5t20 13.5l37 37q9 9 13 20t4 22q0 11-4.5 22.5T862-380L643-160H520Zm300-263-37-37 37 37ZM580-220h38l121-122-18-19-19-18-122 121v38Zm141-141-19-18 37 37-18-19Z" />
+                </svg></span>{{- end }}
+        </h2>
+    </header>
+    {{- if (ne (.Param "hideSummary") true) }}
+    <div class="entry-content">
+        <p>{{ .Summary | plainify | truncate 120 }}</p>
+    </div>
+    {{- end }}
+    {{- if not (.Param "hideMeta") }}
+    <footer class="entry-footer">
+        {{- partial "post_meta.html" . -}}
+    </footer>
+    {{- end }}
+    <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+</article>
+{{- end }}
+
+{{- end }}

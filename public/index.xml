@@ -2,36 +2,36 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Ahmad Fakhrozy</title>
-    <link>https://ahmadfakhrozy.com/</link>
+    <link>http://localhost:41011/</link>
     <description>Recent content on Ahmad Fakhrozy</description>
     <image>
       <title>Ahmad Fakhrozy</title>
-      <url>https://ahmadfakhrozy.com/images/papermod-cover.png</url>
-      <link>https://ahmadfakhrozy.com/images/papermod-cover.png</link>
+      <url>http://localhost:41011/images/papermod-cover.png</url>
+      <link>http://localhost:41011/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Thu, 18 Dec 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://ahmadfakhrozy.com/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:41011/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Fixing Xbox Series X|S Controller with official Dongle on Arch Linux (Omarchy)</title>
-      <link>https://ahmadfakhrozy.com/blog/fixing-xbox-series-x-s-controller-with-official-dongle-on-arch-linux/</link>
+      <link>http://localhost:41011/blog/fixing-xbox-series-x-s-controller-with-official-dongle-on-arch-linux/</link>
       <pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://ahmadfakhrozy.com/blog/fixing-xbox-series-x-s-controller-with-official-dongle-on-arch-linux/</guid>
+      <guid>http://localhost:41011/blog/fixing-xbox-series-x-s-controller-with-official-dongle-on-arch-linux/</guid>
       <description>Using Xbox controller with official USB dongle required runtime firmware and user-space darmon called xow.</description>
     </item>
     <item>
       <title>Moving my personal website to Hugo</title>
-      <link>https://ahmadfakhrozy.com/blog/moving-my-personal-website-to-hugo/</link>
+      <link>http://localhost:41011/blog/moving-my-personal-website-to-hugo/</link>
       <pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://ahmadfakhrozy.com/blog/moving-my-personal-website-to-hugo/</guid>
+      <guid>http://localhost:41011/blog/moving-my-personal-website-to-hugo/</guid>
       <description>Using HUGO to deploy my personal note from obsidian (a markdown note app)</description>
     </item>
     <item>
       <title>How to Resize AWS Nitro-based Instance Type — Use Case M4-M5</title>
-      <link>https://ahmadfakhrozy.com/blog/how-to-resize-aws-nitro-based-instance-type--use-case-m4-m5/</link>
+      <link>http://localhost:41011/blog/how-to-resize-aws-nitro-based-instance-type--use-case-m4-m5/</link>
       <pubDate>Tue, 23 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>https://ahmadfakhrozy.com/blog/how-to-resize-aws-nitro-based-instance-type--use-case-m4-m5/</guid>
+      <guid>http://localhost:41011/blog/how-to-resize-aws-nitro-based-instance-type--use-case-m4-m5/</guid>
       <description>The new generation EC2 service is nitro based instance which require some configuration. In this tutorial I will go through all the requirement that you need to check or do.</description>
     </item>
   </channel>
