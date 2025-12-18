@@ -2,34 +2,43 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2025-12-15T00:00:00+00:00</lastmod>
+    <loc>https://ahmadfakhrozy.com/</loc>
+    <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/blog/</loc>
-    <lastmod>2025-12-15T00:00:00+00:00</lastmod>
+    <loc>https://ahmadfakhrozy.com/categories/blog/</loc>
+    <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2025-12-15T00:00:00+00:00</lastmod>
+    <loc>https://ahmadfakhrozy.com/categories/</loc>
+    <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/lorem-ipsum/</loc>
-    <lastmod>2025-12-15T00:00:00+00:00</lastmod>
+    <loc>https://ahmadfakhrozy.com/posts/fixing-xbox-series-x-s-controller-with-official-dongle-on-arch-linux/</loc>
+    <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/my-first-blog-post/</loc>
-    <lastmod>2025-12-15T00:00:00+00:00</lastmod>
+    <loc>https://ahmadfakhrozy.com/tags/games/</loc>
+    <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2025-12-15T00:00:00+00:00</lastmod>
+    <loc>https://ahmadfakhrozy.com/tags/linux/</loc>
+    <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/sample/</loc>
-    <lastmod>2025-12-15T00:00:00+00:00</lastmod>
+    <loc>https://ahmadfakhrozy.com/tags/lorem-ipsum/</loc>
+    <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-12-15T00:00:00+00:00</lastmod>
+    <loc>https://ahmadfakhrozy.com/posts/moving-my-personal-website-to-hugo/</loc>
+    <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/</loc>
+    <loc>https://ahmadfakhrozy.com/posts/</loc>
+    <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/search/</loc>
+    <loc>https://ahmadfakhrozy.com/tags/sample/</loc>
+    <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/series/</loc>
+    <loc>https://ahmadfakhrozy.com/tags/</loc>
+    <lastmod>2025-12-18T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://ahmadfakhrozy.com/blog/</loc>
+  </url><url>
+    <loc>https://ahmadfakhrozy.com/search/</loc>
+  </url><url>
+    <loc>https://ahmadfakhrozy.com/series/</loc>
   </url>
 </urlset>
