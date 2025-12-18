@@ -30,8 +30,11 @@ taxonomies:
 menu:
   main:
     - name: Blog
-      url: blog
+      url: blog/
       weight: 5
+    - name: Archive
+      url: archive/
+      weight: 8
     - name: Tags
       url: tags/
       weight: 10

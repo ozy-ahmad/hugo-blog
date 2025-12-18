@@ -8,10 +8,13 @@
     <loc>https://ahmadfakhrozy.com/categories/blog/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://ahmadfakhrozy.com/blog/</loc>
+    <lastmod>2025-12-18T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://ahmadfakhrozy.com/categories/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ahmadfakhrozy.com/posts/fixing-xbox-series-x-s-controller-with-official-dongle-on-arch-linux/</loc>
+    <loc>https://ahmadfakhrozy.com/blog/fixing-xbox-series-x-s-controller-with-official-dongle-on-arch-linux/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ahmadfakhrozy.com/tags/games/</loc>
@@ -23,10 +26,7 @@
     <loc>https://ahmadfakhrozy.com/tags/lorem-ipsum/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ahmadfakhrozy.com/posts/moving-my-personal-website-to-hugo/</loc>
-    <lastmod>2025-12-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://ahmadfakhrozy.com/posts/</loc>
+    <loc>https://ahmadfakhrozy.com/blog/moving-my-personal-website-to-hugo/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://ahmadfakhrozy.com/tags/sample/</loc>
@@ -44,10 +44,10 @@
     <loc>https://ahmadfakhrozy.com/tags/ec2/</loc>
     <lastmod>2021-11-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ahmadfakhrozy.com/posts/how-to-resize-aws-nitro-based-instance-type--use-case-m4-m5/</loc>
+    <loc>https://ahmadfakhrozy.com/blog/how-to-resize-aws-nitro-based-instance-type--use-case-m4-m5/</loc>
     <lastmod>2021-11-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://ahmadfakhrozy.com/blog/</loc>
+    <loc>https://ahmadfakhrozy.com/archive/</loc>
   </url><url>
     <loc>https://ahmadfakhrozy.com/search/</loc>
   </url><url>

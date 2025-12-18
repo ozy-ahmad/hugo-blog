@@ -16,23 +16,23 @@
     <atom:link href="https://ahmadfakhrozy.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Fixing Xbox Series X|S Controller with official Dongle on Arch Linux (Omarchy)</title>
-      <link>https://ahmadfakhrozy.com/posts/fixing-xbox-series-x-s-controller-with-official-dongle-on-arch-linux/</link>
+      <link>https://ahmadfakhrozy.com/blog/fixing-xbox-series-x-s-controller-with-official-dongle-on-arch-linux/</link>
       <pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://ahmadfakhrozy.com/posts/fixing-xbox-series-x-s-controller-with-official-dongle-on-arch-linux/</guid>
+      <guid>https://ahmadfakhrozy.com/blog/fixing-xbox-series-x-s-controller-with-official-dongle-on-arch-linux/</guid>
       <description>Using Xbox controller with official USB dongle required runtime firmware and user-space darmon called xow.</description>
     </item>
     <item>
       <title>Moving my personal website to Hugo</title>
-      <link>https://ahmadfakhrozy.com/posts/moving-my-personal-website-to-hugo/</link>
+      <link>https://ahmadfakhrozy.com/blog/moving-my-personal-website-to-hugo/</link>
       <pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>https://ahmadfakhrozy.com/posts/moving-my-personal-website-to-hugo/</guid>
+      <guid>https://ahmadfakhrozy.com/blog/moving-my-personal-website-to-hugo/</guid>
       <description>Using HUGO to deploy my personal note from obsidian (a markdown note app)</description>
     </item>
     <item>
       <title>How to Resize AWS Nitro-based Instance Type — Use Case M4-M5</title>
-      <link>https://ahmadfakhrozy.com/posts/how-to-resize-aws-nitro-based-instance-type--use-case-m4-m5/</link>
+      <link>https://ahmadfakhrozy.com/blog/how-to-resize-aws-nitro-based-instance-type--use-case-m4-m5/</link>
       <pubDate>Tue, 23 Nov 2021 00:00:00 +0000</pubDate>
-      <guid>https://ahmadfakhrozy.com/posts/how-to-resize-aws-nitro-based-instance-type--use-case-m4-m5/</guid>
+      <guid>https://ahmadfakhrozy.com/blog/how-to-resize-aws-nitro-based-instance-type--use-case-m4-m5/</guid>
       <description>The new generation EC2 service is nitro based instance which require some configuration. In this tutorial I will go through all the requirement that you need to check or do.</description>
     </item>
   </channel>

@@ -14,7 +14,7 @@ OBSIDIAN_POSTS="/home/ozy/Obsidian/SecondBrain/Posts"
 OBSIDIAN_ATTACHMENTS="/home/ozy/Obsidian/SecondBrain/attachments"
 
 # Hugo paths
-HUGO_POSTS="/home/ozy/git/hugo-blog/content/posts"
+HUGO_POSTS="/home/ozy/git/hugo-blog/content/blog"
 HUGO_IMAGES="/home/ozy/git/hugo-blog/static/images"
 
 # GitHub repo
@@ -207,7 +207,7 @@ def convert_obsidian_images(content):
 compress_images('/home/ozy/git/hugo-blog/static/images')
 
 # Process markdown files
-posts_dir = Path('/home/ozy/git/hugo-blog/content/posts')
+posts_dir = Path('/home/ozy/git/hugo-blog/content/blog')
 md_files = list(posts_dir.glob('**/*.md'))
 
 print(f"\nProcessing {len(md_files)} markdown file(s)...")
