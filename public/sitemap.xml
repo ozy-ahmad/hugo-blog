@@ -2,55 +2,55 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:41563/</loc>
+    <loc>http://localhost:44777/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:41563/categories/blog/</loc>
+    <loc>http://localhost:44777/categories/blog/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:41563/blog/</loc>
+    <loc>http://localhost:44777/blog/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:41563/categories/</loc>
+    <loc>http://localhost:44777/categories/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:41563/blog/fixing-xbox-series-x-s-controller-with-official-dongle-on-arch-linux/</loc>
+    <loc>http://localhost:44777/blog/fixing-xbox-series-x-s-controller-with-official-dongle-on-arch-linux/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:41563/tags/games/</loc>
+    <loc>http://localhost:44777/tags/games/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:41563/tags/linux/</loc>
+    <loc>http://localhost:44777/tags/linux/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:41563/tags/lorem-ipsum/</loc>
+    <loc>http://localhost:44777/tags/lorem-ipsum/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:41563/blog/moving-my-personal-website-to-hugo/</loc>
+    <loc>http://localhost:44777/blog/moving-my-personal-website-to-hugo/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:41563/tags/sample/</loc>
+    <loc>http://localhost:44777/tags/sample/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:41563/tags/</loc>
+    <loc>http://localhost:44777/tags/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:41563/tags/aws/</loc>
+    <loc>http://localhost:44777/tags/aws/</loc>
     <lastmod>2021-11-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:41563/tags/cloud/</loc>
+    <loc>http://localhost:44777/tags/cloud/</loc>
     <lastmod>2021-11-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:41563/tags/ec2/</loc>
+    <loc>http://localhost:44777/tags/ec2/</loc>
     <lastmod>2021-11-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:41563/blog/how-to-resize-aws-nitro-based-instance-type--use-case-m4-m5/</loc>
+    <loc>http://localhost:44777/blog/how-to-resize-aws-nitro-based-instance-type--use-case-m4-m5/</loc>
     <lastmod>2021-11-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:41563/archive/</loc>
+    <loc>http://localhost:44777/archive/</loc>
   </url><url>
-    <loc>http://localhost:41563/search/</loc>
+    <loc>http://localhost:44777/search/</loc>
   </url><url>
-    <loc>http://localhost:41563/series/</loc>
+    <loc>http://localhost:44777/series/</loc>
   </url>
 </urlset>
