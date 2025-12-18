@@ -37,3 +37,99 @@
 [data-theme="dark"] .terms-tags a sup {
     color: #666 !important;
 }
+
+/* ============================================
+   Mobile Hamburger Menu
+   ============================================ */
+
+/* Hamburger button - hidden on desktop */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.menu-toggle svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--primary);
+    stroke-width: 2;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+
+    /* Header needs relative positioning */
+    .header {
+        position: relative;
+        z-index: 100;
+    }
+
+    nav.nav {
+        position: relative;
+    }
+
+    /* Show hamburger button */
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1002;
+        background: transparent;
+        border-radius: 4px;
+        padding: 8px;
+    }
+
+    /* Right sidebar menu */
+    nav.nav #menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 250px;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        flex-direction: column;
+        padding: 80px 2rem 2rem;
+        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+        z-index: 1001;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+    }
+
+    /* Dark mode sidebar */
+    [data-theme="dark"] nav.nav #menu {
+        background: rgba(30, 30, 30, 0.5);
+    }
+
+    /* Show menu when active */
+    nav.nav #menu.active {
+        display: flex;
+        transform: translateX(0);
+    }
+
+    nav.nav #menu li {
+        margin: 0.75rem 0;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    [data-theme="dark"] nav.nav #menu li {
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    nav.nav #menu li:last-child {
+        border-bottom: none;
+    }
+
+    nav.nav #menu li a {
+        font-size: 1.1rem;
+    }
+}
