@@ -1,6 +1,6 @@
 
 ---
-title: "Moving my personal website to Hugo"
+title: "How to Resize AWS Nitro-based Instance Type — Use Case M4-M5"
 date: 2021-11-23
 publish: true
 draft: false
