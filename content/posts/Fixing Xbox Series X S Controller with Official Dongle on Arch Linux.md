@@ -198,7 +198,7 @@ After this, wireless pairing works normally.
 
 ## Lessons Learned
 
-- The official Xbox dongle requires firmware every boot
+- The official Xbox dongle requires firmware (xow or xone)
 - `xow` is a user‑space USB translator, not a kernel driver
 - USB pairing once is necessary for Series X|S controllers
 - Linux exposes complexity that Windows hides

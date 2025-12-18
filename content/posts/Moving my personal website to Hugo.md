@@ -6,7 +6,7 @@ publish: true
 draft: false
 tags: ["sample", "lorem ipsum"]
 categories: ["blog"]
-summary: "A sample blog post to get started with Hugo and PaperMod theme."
+summary: "Using HUGO to deploy my personal note from obsidian (a markdown note app)"
 
 ---
 
