@@ -32,12 +32,12 @@ menu:
     - name: Blog
       url: blog
       weight: 5
-    - name: Search
-      url: search/
-      weight: 10
     - name: Tags
       url: tags/
       weight: 10
+    - name: 🔍
+      url: search/
+      weight: 60
 
 outputs:
   home:
@@ -92,6 +92,9 @@ params:
     - name: linkedin
       title: LinkedIn
       url: "https://www.linkedin.com/in/ahmad-fakhrozy-9069741a1/"
+    - name: email
+      title: Email
+      url: "mailto:ahmadfakhrozy@gmail.com"
 
   # editPost:
   #   URL: "https://github.com/adityatelange/hugo-PaperMod/tree/exampleSite/content"
