@@ -8,6 +8,19 @@ Sync Obsidian posts and images to Hugo, compress images, and deploy to GitHub.
 ./sync.sh
 ```
 
+## Workflow
+
+```mermaid
+flowchart LR
+    A[Obsidian Posts] -->|rsync| B[Hugo Posts]
+    C[Obsidian Attachments] -->|rsync| D[Hugo Images]
+    B --> E[Convert Links]
+    D --> F[Compress Images]
+    E --> G[Hugo Build]
+    F --> G
+    G --> H[Git Push Main]
+```
+
 ## Configuration
 
 Edit these variables in `sync.sh`:
