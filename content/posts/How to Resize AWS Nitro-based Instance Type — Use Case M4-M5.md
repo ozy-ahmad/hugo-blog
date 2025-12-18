@@ -9,7 +9,8 @@ categories: ["blog"]
 summary: "The new generation EC2 service is nitro based instance which require some configuration. In this tutorial I will go through all the requirement that you need to check or do."
 
 ---
-				![Pasted image 20251218222004](/images/Pasted%20image%2020251218222004.png)
+![Pasted image 20251218222004](/images/Pasted%20image%2020251218222004.png)
+
 
 EC2 server is virtual machine which running on hypervisor under AWS hardware. The new generation EC2 service is nitro based instance which require some configuration. In this tutorial I will go through all the requirement that you need to check or do.
 
