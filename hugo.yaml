@@ -2,7 +2,7 @@
 # contain http (as opposeed to https) URLs. This would affect Google indexing of your URLs.
 baseURL: "https://ahmadfakhrozy.com/"
 title: Ahmad Fakhrozy
-copyright: "© [Copyright Ahmad Fakhrozy](https://ahmadfakhrozy.com)"
+# copyright is handled by PaperMod footer with dynamic year
 theme: [PaperMod]
 
 enableInlineShortcodes: true
