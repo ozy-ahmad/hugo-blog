@@ -33,6 +33,17 @@ for cmd in git rsync python3 hugo; do
 done
 echo "✅ All required commands available."
 
+# Check and install Pillow for image compression
+echo "🐍 Checking Python dependencies..."
+if ! python3 -c "from PIL import Image" 2>/dev/null; then
+    echo "📦 Installing Pillow for image compression..."
+    echo "   Run: sudo pacman -S python-pillow"
+    sudo pacman -S --noconfirm python-pillow
+    echo "✅ Pillow installed."
+else
+    echo "✅ Pillow already installed."
+fi
+
 # =============================================================================
 # Step 1: Initialize Git if needed
 # =============================================================================
@@ -89,20 +100,89 @@ else
 fi
 
 # =============================================================================
-# Step 4: Process Markdown files to convert Obsidian image links
+# Step 4: Compress images and convert Obsidian image links
 # =============================================================================
 
-echo "🔄 Processing image links in Markdown files..."
+echo "🔄 Processing and compressing images..."
 
 python3 << 'PYTHON_SCRIPT'
 """
-Convert Obsidian image links to Hugo format.
-Obsidian: ![[image.png]] or ![[image.png|alt text]]
-Hugo:     ![alt text](/images/image.png)
+1. Compress images in static/images (PNG/JPG)
+2. Convert Obsidian image links to Hugo format
 """
 import os
 import re
 from pathlib import Path
+
+# Try to import Pillow for image compression
+try:
+    from PIL import Image
+    PILLOW_AVAILABLE = True
+except ImportError:
+    PILLOW_AVAILABLE = False
+    print("⚠️  Pillow not installed. Skipping image compression.")
+    print("   Install with: pip install Pillow")
+
+# =============================================================================
+# Image Compression
+# =============================================================================
+
+def compress_images(images_dir, max_width=1200, quality=85):
+    """Compress images to reduce file size."""
+    if not PILLOW_AVAILABLE:
+        return
+    
+    images_path = Path(images_dir)
+    if not images_path.exists():
+        return
+    
+    image_extensions = {'.png', '.jpg', '.jpeg', '.webp'}
+    image_files = [f for f in images_path.iterdir() 
+                   if f.suffix.lower() in image_extensions]
+    
+    if not image_files:
+        print("No images to compress.")
+        return
+    
+    print(f"Compressing {len(image_files)} image(s)...")
+    
+    for img_path in image_files:
+        try:
+            original_size = img_path.stat().st_size
+            
+            with Image.open(img_path) as img:
+                # Convert RGBA to RGB for JPEG (remove alpha channel)
+                if img.mode == 'RGBA' and img_path.suffix.lower() in {'.jpg', '.jpeg'}:
+                    img = img.convert('RGB')
+                
+                # Resize if wider than max_width
+                if img.width > max_width:
+                    ratio = max_width / img.width
+                    new_height = int(img.height * ratio)
+                    img = img.resize((max_width, new_height), Image.Resampling.LANCZOS)
+                
+                # Save with compression
+                if img_path.suffix.lower() == '.png':
+                    img.save(img_path, 'PNG', optimize=True)
+                elif img_path.suffix.lower() in {'.jpg', '.jpeg'}:
+                    img.save(img_path, 'JPEG', quality=quality, optimize=True)
+                elif img_path.suffix.lower() == '.webp':
+                    img.save(img_path, 'WEBP', quality=quality)
+            
+            new_size = img_path.stat().st_size
+            savings = ((original_size - new_size) / original_size) * 100
+            
+            if savings > 0:
+                print(f"  ✅ {img_path.name}: {original_size//1024}KB → {new_size//1024}KB ({savings:.1f}% smaller)")
+            else:
+                print(f"  ℹ️  {img_path.name}: already optimized")
+                
+        except Exception as e:
+            print(f"  ❌ Error compressing {img_path.name}: {e}")
+
+# =============================================================================
+# Convert Obsidian Image Links
+# =============================================================================
 
 def convert_obsidian_images(content):
     pattern = r'!\[\[([^\]|]+)(?:\|([^\]]+))?\]\]'
@@ -116,10 +196,18 @@ def convert_obsidian_images(content):
     
     return re.sub(pattern, replace_image, content)
 
+# =============================================================================
+# Main
+# =============================================================================
+
+# Compress images
+compress_images('/home/ozy/git/hugo-blog/static/images')
+
+# Process markdown files
 posts_dir = Path('/home/ozy/git/hugo-blog/content/posts')
 md_files = list(posts_dir.glob('**/*.md'))
 
-print(f"Found {len(md_files)} markdown file(s).")
+print(f"\nProcessing {len(md_files)} markdown file(s)...")
 
 for md_file in md_files:
     try:
@@ -128,7 +216,7 @@ for md_file in md_files:
             new_content = convert_obsidian_images(content)
             if content != new_content:
                 md_file.write_text(new_content, encoding='utf-8')
-                print(f"  ✅ Processed: {md_file.name}")
+                print(f"  ✅ Converted links: {md_file.name}")
             else:
                 print(f"  ℹ️  No changes: {md_file.name}")
         else:
@@ -136,10 +224,10 @@ for md_file in md_files:
     except Exception as e:
         print(f"  ❌ Error: {md_file.name}: {e}")
 
-print("Done processing image links.")
+print("Done.")
 PYTHON_SCRIPT
 
-echo "✅ Image links processed."
+echo "✅ Images processed."
 
 # =============================================================================
 # Step 5: Build the Hugo site
