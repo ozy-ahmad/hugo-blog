@@ -166,6 +166,8 @@ markup:
 #     privacyEnhanced: true
 
 services:
+  googleAnalytics:
+    ID: G-PENLQ3XLZ4
   instagram:
     disableInlineCSS: true
   x:
