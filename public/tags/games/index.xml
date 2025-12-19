@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Games on Ahmad Fakhrozy</title>
-    <link>http://localhost:41275/tags/games/</link>
+    <link>http://localhost:32895/tags/games/</link>
     <description>Recent content in Games on Ahmad Fakhrozy</description>
     <image>
       <title>Ahmad Fakhrozy</title>
-      <url>http://localhost:41275/images/papermod-cover.png</url>
-      <link>http://localhost:41275/images/papermod-cover.png</link>
+      <url>http://localhost:32895/images/papermod-cover.png</url>
+      <link>http://localhost:32895/images/papermod-cover.png</link>
     </image>
     <generator>Hugo -- 0.152.2</generator>
     <language>en</language>
     <lastBuildDate>Thu, 18 Dec 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:41275/tags/games/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:32895/tags/games/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Fixing Xbox Series X|S Controller with official Dongle on Arch Linux (Omarchy)</title>
-      <link>http://localhost:41275/blog/fixing-xbox-series-x-s-controller-with-official-dongle-on-arch-linux/</link>
+      <link>http://localhost:32895/blog/fixing-xbox-series-x-s-controller-with-official-dongle-on-arch-linux/</link>
       <pubDate>Thu, 18 Dec 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:41275/blog/fixing-xbox-series-x-s-controller-with-official-dongle-on-arch-linux/</guid>
+      <guid>http://localhost:32895/blog/fixing-xbox-series-x-s-controller-with-official-dongle-on-arch-linux/</guid>
       <description>Using Xbox controller with official USB dongle required runtime firmware and user-space darmon called xow.</description>
     </item>
   </channel>
