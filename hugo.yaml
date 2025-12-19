@@ -102,6 +102,9 @@ params:
 
 
 
+  schema:
+    logo: "/logo-192x192.png"
+
   assets:
     disableHLJS: true
     favicon: "/favicon.ico"
