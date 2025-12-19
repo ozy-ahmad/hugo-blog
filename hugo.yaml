@@ -102,12 +102,9 @@ params:
 
 
 
-  schema:
-    logo: "/logo-192x192.png"
-
   assets:
     disableHLJS: true
-    favicon: "/favicon.ico"
+    favicon: "/logo-192x192.png"
     favicon16x16: "/favicon-16x16.png"
     favicon32x32: "/favicon-32x32.png"
     apple_touch_icon: "/apple-touch-icon.png"
