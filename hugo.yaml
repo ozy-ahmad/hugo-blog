@@ -1,10 +1,15 @@
-# If your site is in 'https', then make sure your base url isn't written using 'http' otherwise your sitemap would
-# contain http (as opposeed to https) URLs. This would affect Google indexing of your URLs.
+# ============================================================================
+# SITE BASICS
+# ============================================================================
+# If your site is in 'https', then make sure your base url isn't written using
+# 'http' otherwise your sitemap would contain http URLs. This affects indexing.
 baseURL: "https://ahmadfakhrozy.com/"
 title: Ahmad Fakhrozy
-# copyright is handled by PaperMod footer with dynamic year
 theme: [PaperMod]
 
+# ============================================================================
+# BUILD OPTIONS
+# ============================================================================
 enableInlineShortcodes: true
 enableRobotsTXT: true
 buildDrafts: false
@@ -14,19 +19,31 @@ enableEmoji: true
 pygmentsUseClasses: true
 mainsections: ["blog"]
 
+# ============================================================================
+# MINIFICATION
+# ============================================================================
 minify:
   disableXML: true
   minifyOutput: true
 
+# ============================================================================
+# PAGINATION
+# ============================================================================
 pagination:
   disableAliases: false
   pagerSize: 5
 
+# ============================================================================
+# TAXONOMIES
+# ============================================================================
 taxonomies:
   category: categories
   tag: tags
   series: series
 
+# ============================================================================
+# NAVIGATION MENU
+# ============================================================================
 menu:
   main:
     - name: Home
@@ -45,18 +62,27 @@ menu:
       url: /search/
       weight: 60
 
+# ============================================================================
+# OUTPUT FORMATS
+# ============================================================================
 outputs:
   home:
     - HTML
     - RSS
     - JSON
 
+# ============================================================================
+# SITE PARAMETERS
+# ============================================================================
 params:
-  env: production # to enable google analytics, opengraph, twitter-cards and schema.
+  # Environment - enables google analytics, opengraph, twitter-cards, schema
+  env: production
   description: "Ahmad Fakhrozy - Cloud Engineer"
   author: Ahmad Fakhrozy
-  # author: ["Me", "You"] # multiple authors
 
+  # --------------------------------------------------------------------------
+  # Theme & Display Settings
+  # --------------------------------------------------------------------------
   defaultTheme: light
   # disableThemeToggle: true
   ShowShareButtons: true
@@ -70,9 +96,13 @@ params:
   ShowAllPagesInArchive: true
   ShowPageNums: true
   ShowToc: true
-  # comments: false
+
+  # Default image for OpenGraph/Twitter cards
   images: ["images/papermod-cover.png"]
 
+  # --------------------------------------------------------------------------
+  # Profile Mode (Homepage)
+  # --------------------------------------------------------------------------
   profileMode:
     enabled: true
     title: "Ahmad Fakhrozy"
@@ -87,8 +117,9 @@ params:
     #   - name: Tags
     #     url: tags
 
-
-
+  # --------------------------------------------------------------------------
+  # Social Icons
+  # --------------------------------------------------------------------------
   socialIcons:
     - name: github
       title: GitHub
@@ -100,8 +131,9 @@ params:
       title: Email
       url: "mailto:ahmadfakhrozy@gmail.com"
 
-
-
+  # --------------------------------------------------------------------------
+  # Assets (Favicons, etc.)
+  # --------------------------------------------------------------------------
   assets:
     disableHLJS: true
     favicon: "/logo-192x192.png"
@@ -109,12 +141,13 @@ params:
     favicon32x32: "/favicon-32x32.png"
     apple_touch_icon: "/apple-touch-icon.png"
 
-
-
+# ============================================================================
+# MARKDOWN RENDERING
+# ============================================================================
 markup:
   goldmark:
     renderer:
-      unsafe: true
+      unsafe: true  # Allow raw HTML in markdown
   highlight:
     noClasses: false
     # anchorLineNos: true
@@ -123,7 +156,9 @@ markup:
     # lineNos: true
     # style: monokai
 
-
+# ============================================================================
+# EXTERNAL SERVICES
+# ============================================================================
 services:
   googleAnalytics:
     ID: G-PENLQ3XLZ4

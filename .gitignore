@@ -1,0 +1,18 @@
+# Hugo build artifacts
+.hugo_build.lock
+public/
+resources/_gen/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Editor files
+*.swp
+*.swo
+*~
+.*.swp
+
+# OS files
+.DS_Store
+Thumbs.db

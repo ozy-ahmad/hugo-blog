@@ -6,19 +6,58 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
 # =============================================================================
-# Configuration
+# Script Options
+# =============================================================================
+
+DRY_RUN=false
+BRANCH="${BRANCH:-main}"
+
+# Parse command line arguments
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --dry-run|-n)
+            DRY_RUN=true
+            echo "🏃 Dry-run mode enabled - no changes will be committed or pushed"
+            shift
+            ;;
+        --help|-h)
+            echo "Usage: ./sync.sh [OPTIONS]"
+            echo ""
+            echo "Options:"
+            echo "  --dry-run, -n    Preview changes without committing or pushing"
+            echo "  --help, -h       Show this help message"
+            echo ""
+            echo "Environment Variables:"
+            echo "  OBSIDIAN_POSTS        Path to Obsidian posts folder"
+            echo "  OBSIDIAN_ATTACHMENTS  Path to Obsidian attachments folder"
+            echo "  HUGO_POSTS            Path to Hugo posts destination"
+            echo "  HUGO_IMAGES           Path to Hugo images destination"
+            echo "  MYREPO                GitHub repository URL"
+            echo "  BRANCH                Git branch to push (default: main)"
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1"
+            echo "Use --help for usage information"
+            exit 1
+            ;;
+    esac
+done
+
+# =============================================================================
+# Configuration (can be overridden via environment variables)
 # =============================================================================
 
 # Obsidian paths
-OBSIDIAN_POSTS="/home/ozy/Obsidian/SecondBrain/Posts"
-OBSIDIAN_ATTACHMENTS="/home/ozy/Obsidian/SecondBrain/attachments"
+OBSIDIAN_POSTS="${OBSIDIAN_POSTS:-/home/ozy/Obsidian/SecondBrain/Posts}"
+OBSIDIAN_ATTACHMENTS="${OBSIDIAN_ATTACHMENTS:-/home/ozy/Obsidian/SecondBrain/attachments}"
 
 # Hugo paths
-HUGO_POSTS="/home/ozy/git/hugo-blog/content/blog"
-HUGO_IMAGES="/home/ozy/git/hugo-blog/static/images"
+HUGO_POSTS="${HUGO_POSTS:-/home/ozy/git/hugo-blog/content/blog}"
+HUGO_IMAGES="${HUGO_IMAGES:-/home/ozy/git/hugo-blog/static/images}"
 
 # GitHub repo
-MYREPO="https://github.com/ozy-ahmad/hugo-blog"
+MYREPO="${MYREPO:-https://github.com/ozy-ahmad/hugo-blog}"
 
 # =============================================================================
 # Pre-flight checks
@@ -251,8 +290,13 @@ echo "📦 Staging changes for Git..."
 if git diff --quiet && git diff --cached --quiet; then
     echo "ℹ️  No changes to stage."
 else
-    git add .
-    echo "✅ Changes staged."
+    if [ "$DRY_RUN" = true ]; then
+        echo "🔍 [DRY-RUN] Would stage changes:"
+        git status --short
+    else
+        git add .
+        echo "✅ Changes staged."
+    fi
 fi
 
 # =============================================================================
@@ -260,7 +304,11 @@ fi
 # =============================================================================
 
 commit_message="New Blog Post on $(date +'%Y-%m-%d %H:%M:%S')"
-if git diff --cached --quiet; then
+if [ "$DRY_RUN" = true ]; then
+    if ! git diff --quiet; then
+        echo "🔍 [DRY-RUN] Would commit with message: $commit_message"
+    fi
+elif git diff --cached --quiet; then
     echo "ℹ️  No changes to commit."
 else
     echo "💾 Committing changes..."
@@ -269,19 +317,28 @@ else
 fi
 
 # =============================================================================
-# Step 8: Push to main branch
+# Step 8: Push to branch
 # =============================================================================
 
-echo "🚀 Deploying to GitHub Main..."
-if ! git push origin main; then
-    echo "❌ Failed to push to main branch."
-    exit 1
+if [ "$DRY_RUN" = true ]; then
+    echo "🔍 [DRY-RUN] Would push to $BRANCH branch"
+else
+    echo "🚀 Deploying to GitHub ($BRANCH)..."
+    if ! git push origin "$BRANCH"; then
+        echo "❌ Failed to push to $BRANCH branch."
+        exit 1
+    fi
+    echo "✅ Pushed to $BRANCH branch."
 fi
-echo "✅ Pushed to main branch."
 
 # =============================================================================
 # Done!
 # =============================================================================
 
 echo ""
-echo "🎉 All done! Site synced, processed, committed, built, and pushed to main."
+if [ "$DRY_RUN" = true ]; then
+    echo "🏁 Dry-run complete! No changes were committed or pushed."
+else
+    echo "🎉 All done! Site synced, processed, committed, built, and pushed to $BRANCH."
+fi
+
