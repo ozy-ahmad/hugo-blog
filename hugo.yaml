@@ -107,7 +107,7 @@ params:
     enabled: true
     title: "Ahmad Fakhrozy"
     subtitle: "Cloud Platform Engineer with an SRE mindset, working with AWS, Microsoft Azure, Kubernetes, and Linux/Windows systems to build reliable, scalable platforms. Passionate about automation, observability, and continuous learning."
-    imageUrl: "/images/profile.jpg"
+    imageUrl: "/profile.jpg"
     imageWidth: 150
     imageHeight: 150
     imageTitle: "Ahmad Fakhrozy"
