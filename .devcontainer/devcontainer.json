@@ -1,0 +1,40 @@
+ {
+   "name": "Hugo Blog",
+   "build": {
+     "dockerfile": "Dockerfile"
+   },
+   "features": {
+     "ghcr.io/devcontainers/features/git:1": {},
+     "ghcr.io/devcontainers/features/github-cli:1": {}
+   },
+   "customizations": {
+     "vscode": {
+       "extensions": [
+         "budparr.language-hugo-vscode",
+         "eliostruyf.vscode-front-matter",
+         "yzhang.markdown-all-in-one",
+         "davidanson.vscode-markdownlint",
+         "esbenp.prettier-vscode"
+       ],
+       "settings": {
+         "terminal.integrated.defaultProfile.linux": "bash"
+       }
+     }
+   },
+   "forwardPorts": [1313],
+   "postCreateCommand": "git submodule update --init --recursive",
+   "postStartCommand": "echo '✅ Hugo dev container ready! Run: hugo server -D'",
+   "mounts": [
+    "source=${localEnv:HOME}/Obsidian/SecondBrain/Posts,target=/obsidian/Posts,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/Obsidian/SecondBrain/attachments,target=/obsidian/attachments,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.factory,target=/home/vscode/.factory,type=bind,consistency=cached"
+   ],
+   "containerEnv": {
+     "OBSIDIAN_POSTS": "/obsidian/Posts",
+     "OBSIDIAN_ATTACHMENTS": "/obsidian/attachments",
+     "HUGO_POSTS": "/workspaces/hugo-blog/content/blog",
+    "HUGO_IMAGES": "/workspaces/hugo-blog/static/images",
+    "OPENROUTER_API_KEY": "${localEnv:OPENROUTER_API_KEY}"
+   },
+   "remoteUser": "vscode"
+ }

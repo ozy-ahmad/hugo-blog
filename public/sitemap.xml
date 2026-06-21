@@ -2,55 +2,55 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://ahmadfakhrozy.com/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/blog/</loc>
+    <loc>https://ahmadfakhrozy.com/categories/blog/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/</loc>
+    <loc>https://ahmadfakhrozy.com/blog/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://ahmadfakhrozy.com/categories/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/fixing-xbox-series-x-s-controller-with-official-dongle-on-arch-linux/</loc>
+    <loc>https://ahmadfakhrozy.com/blog/fixing-xbox-series-x-s-controller-with-official-dongle-on-arch-linux/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/games/</loc>
+    <loc>https://ahmadfakhrozy.com/tags/games/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/linux/</loc>
+    <loc>https://ahmadfakhrozy.com/tags/linux/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/lorem-ipsum/</loc>
+    <loc>https://ahmadfakhrozy.com/tags/lorem-ipsum/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/moving-my-personal-website-to-hugo/</loc>
+    <loc>https://ahmadfakhrozy.com/blog/moving-my-personal-website-to-hugo/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/sample/</loc>
+    <loc>https://ahmadfakhrozy.com/tags/sample/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://ahmadfakhrozy.com/tags/</loc>
     <lastmod>2025-12-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/aws/</loc>
+    <loc>https://ahmadfakhrozy.com/tags/aws/</loc>
     <lastmod>2021-11-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/cloud/</loc>
+    <loc>https://ahmadfakhrozy.com/tags/cloud/</loc>
     <lastmod>2021-11-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/tags/ec2/</loc>
+    <loc>https://ahmadfakhrozy.com/tags/ec2/</loc>
     <lastmod>2021-11-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/how-to-resize-aws-nitro-based-instance-type--use-case-m4-m5/</loc>
+    <loc>https://ahmadfakhrozy.com/blog/how-to-resize-aws-nitro-based-instance-type--use-case-m4-m5/</loc>
     <lastmod>2021-11-23T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/archive/</loc>
+    <loc>https://ahmadfakhrozy.com/archive/</loc>
   </url><url>
-    <loc>http://localhost:1313/search/</loc>
+    <loc>https://ahmadfakhrozy.com/search/</loc>
   </url><url>
-    <loc>http://localhost:1313/series/</loc>
+    <loc>https://ahmadfakhrozy.com/series/</loc>
   </url>
 </urlset>
