@@ -1,8 +1,9 @@
  FROM mcr.microsoft.com/devcontainers/base:debian
  
  # Install Hugo extended version
- ARG HUGO_VERSION=0.140.1
- RUN curl -fsSL https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb -o hugo.deb \
+ ARG HUGO_VERSION=0.169.0
+ RUN ARCH=$(dpkg --print-architecture) && \
+    curl -fsSL "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-${ARCH}.deb" -o hugo.deb \
      && dpkg -i hugo.deb \
      && rm hugo.deb
  
