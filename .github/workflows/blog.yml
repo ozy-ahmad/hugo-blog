@@ -1,0 +1,68 @@
+name: blog
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# A newer push to the same PR cancels the older run.
+# Runs on main are never cancelled, so a production deploy (Sprint 3) is never killed mid-upload.
+concurrency:
+  group: blog-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+env:
+  HUGO_VERSION: "0.169.0"   # keep in sync with .devcontainer/Dockerfile (Renovate does this in Sprint 5)
+  TZ: Asia/Kuala_Lumpur     # deterministic dates and future-post cutoff
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          submodules: recursive          # PaperMod is a git submodule
+
+      # Download outside the repo, so the working tree stays clean for wrangler in Sprint 3
+      - name: Install Hugo extended
+        run: |
+          curl -fsSL -o "$RUNNER_TEMP/hugo.deb" \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i "$RUNNER_TEMP/hugo.deb"
+          hugo version
+
+      # PR builds: drafts included, root-relative links so previews don't point at the live site.
+      # Minify off: with baseURL "/", PaperMod's breadcrumb JSON-LD is missing a comma, and the minifier rejects it
+      - name: Build (pull request)
+        if: github.event_name == 'pull_request'
+        env:
+          HUGO_MINIFY_MINIFYOUTPUT: "false"
+        run: hugo --gc --printPathWarnings --buildDrafts --baseURL "/"
+
+      # The exact production build, thrown away: catches anything that would fail only after merge
+      - name: Build check (production config)
+        if: github.event_name == 'pull_request'
+        run: hugo --gc --minify --printPathWarnings --destination "$RUNNER_TEMP/prod-check"
+
+      - name: Build (production)
+        if: github.event_name != 'pull_request'
+        run: hugo --gc --minify --printPathWarnings
+
+      # Internal links only (offline): fast and never flaky
+      - name: Check internal links
+        if: github.event_name == 'pull_request'
+        uses: lycheeverse/lychee-action@v2
+        with:
+          output: ${{ runner.temp }}/lychee/out.md
+          fail: true
+          args: >-
+            --offline --no-progress
+            --include-fragments
+            --index-files index.html
+            --root-dir ${{ github.workspace }}/public
+            --remap "https://ahmadfakhrozy\.com file://${{ github.workspace }}/public"
+            './public/**/*.html'
