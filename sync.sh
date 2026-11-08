@@ -10,7 +10,6 @@ cd "$SCRIPT_DIR"
 # =============================================================================
 
 DRY_RUN=false
-BRANCH="${BRANCH:-main}"
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -33,7 +32,6 @@ while [[ $# -gt 0 ]]; do
             echo "  HUGO_POSTS            Path to Hugo posts destination"
             echo "  HUGO_IMAGES           Path to Hugo images destination"
             echo "  MYREPO                GitHub repository URL"
-            echo "  BRANCH                Git branch to push (default: main)"
             exit 0
             ;;
         *)
@@ -64,12 +62,16 @@ MYREPO="${MYREPO:-https://github.com/ozy-ahmad/hugo-blog}"
 # =============================================================================
 
 echo "🔍 Checking required commands..."
-for cmd in git rsync python3 hugo; do
+for cmd in git rsync python3 gh; do
     if ! command -v $cmd &> /dev/null; then
         echo "❌ $cmd is not installed or not in PATH."
         exit 1
     fi
 done
+if ! gh auth status >/dev/null 2>&1; then
+    echo "❌ gh is not logged in. Run: gh auth login"
+    exit 1
+fi
 echo "✅ All required commands available."
 
 # Check and install Pillow for image compression
@@ -97,6 +99,21 @@ else
         echo "🔗 Adding remote origin..."
         git remote add origin $MYREPO
     fi
+fi
+
+# =============================================================================
+# Step 1b: Start from a clean, up-to-date main
+# =============================================================================
+
+if [ "$DRY_RUN" = false ]; then
+    if [ -n "$(git status --porcelain)" ]; then
+        echo "❌ Working tree is not clean. Commit, stash or discard these first:"
+        git status --short
+        exit 1
+    fi
+    git switch main
+    git pull --ff-only
+    echo "✅ On an up-to-date main."
 fi
 
 # =============================================================================
@@ -134,8 +151,13 @@ else
         mkdir -p "$HUGO_IMAGES"
     fi
     
-    rsync -av --delete "$OBSIDIAN_ATTACHMENTS/" "$HUGO_IMAGES/"
-    echo "✅ Images synced."
+    # Copy only the images a post links to (![[name.png]] or ![[name.png|alt]]), so screenshots
+    # from other vault notes never reach the public repo. --delete-excluded removes the rest.
+    rsync -av --delete-excluded \
+        --include-from=<(grep -ohiP '!\[\[\K[^\]|]+\.(png|jpe?g|webp|gif|svg)(?=(\|[^\]]*)?\]\])' "$OBSIDIAN_POSTS"/*.md | sed 's#.*/##; s#^#/#' | sort -u) \
+        --exclude='*' \
+        "$OBSIDIAN_ATTACHMENTS/" "$HUGO_IMAGES/"
+    echo "✅ Images synced (only those used by posts)."
 fi
 
 # =============================================================================
@@ -272,63 +294,57 @@ PYTHON_SCRIPT
 echo "✅ Images processed."
 
 # =============================================================================
-# Step 5: Build the Hugo site
+# Step 5: Open a pull request (CI builds, checks and deploys a preview)
 # =============================================================================
 
-echo "🏗️  Building the Hugo site..."
-if ! hugo; then
-    echo "❌ Hugo build failed."
+if [ "$DRY_RUN" = true ]; then
+    echo "🔍 [DRY-RUN] Would open a PR with:"
+    git status --short content static
+    echo ""
+    echo "🏁 Dry-run complete! No branch, commit or PR was created."
+    exit 0
+fi
+
+git add content static
+if git diff --cached --quiet; then
+    echo "ℹ️  Nothing to publish."
+    exit 0
+fi
+
+BRANCH_NAME="post/$(date +%Y%m%d-%H%M%S)"
+git switch -c "$BRANCH_NAME"
+git commit -m "post: sync from Obsidian $(date +%F)"
+git push -u origin "$BRANCH_NAME"
+gh pr create --fill --base main
+
+echo "⏳ Waiting for CI (build, link check, preview)…"
+# gh pr checks errors with "no checks reported" until Actions registers the run (exit 8 = pending is fine).
+# Capture the output instead of piping to grep: under set -o pipefail a pipe would report gh's failure
+for _ in {1..30}; do
+    out=$(gh pr checks 2>&1 || true)
+    [[ "$out" == *"no checks reported"* ]] || break
+    sleep 2
+done
+if ! gh pr checks --watch --fail-fast; then
+    echo "❌ CI failed. See: gh pr checks --web"
+    echo "   Fix it in Obsidian, close this PR (gh pr close $BRANCH_NAME --delete-branch), then rerun sync.sh"
+    git switch main
     exit 1
 fi
-echo "✅ Hugo site built."
 
-# =============================================================================
-# Step 6: Stage changes for Git
-# =============================================================================
+echo ""
+echo "🔎 Preview: https://${BRANCH_NAME//\//-}.hugo-blog-ecd.pages.dev  (Cloudflare Access login)"
+echo ""
 
-echo "📦 Staging changes for Git..."
-if git diff --quiet && git diff --cached --quiet; then
-    echo "ℹ️  No changes to stage."
+read -rp "Merge and publish? [y/N] " ok
+if [[ "$ok" == "y" ]]; then
+    gh pr merge --squash --delete-branch      # also switches back to main and pulls
+    git switch main 2>/dev/null || true
+    git pull --ff-only
+    echo "🚀 Merged. Watch the production deploy: gh run watch"
 else
-    if [ "$DRY_RUN" = true ]; then
-        echo "🔍 [DRY-RUN] Would stage changes:"
-        git status --short
-    else
-        git add .
-        echo "✅ Changes staged."
-    fi
-fi
-
-# =============================================================================
-# Step 7: Commit changes
-# =============================================================================
-
-commit_message="New Blog Post on $(date +'%Y-%m-%d %H:%M:%S')"
-if [ "$DRY_RUN" = true ]; then
-    if ! git diff --quiet; then
-        echo "🔍 [DRY-RUN] Would commit with message: $commit_message"
-    fi
-elif git diff --cached --quiet; then
-    echo "ℹ️  No changes to commit."
-else
-    echo "💾 Committing changes..."
-    git commit -m "$commit_message"
-    echo "✅ Changes committed."
-fi
-
-# =============================================================================
-# Step 8: Push to branch
-# =============================================================================
-
-if [ "$DRY_RUN" = true ]; then
-    echo "🔍 [DRY-RUN] Would push to $BRANCH branch"
-else
-    echo "🚀 Deploying to GitHub ($BRANCH)..."
-    if ! git push origin "$BRANCH"; then
-        echo "❌ Failed to push to $BRANCH branch."
-        exit 1
-    fi
-    echo "✅ Pushed to $BRANCH branch."
+    git switch main
+    echo "⏸️  Not merged. PR left open: $(gh pr view "$BRANCH_NAME" --json url --jq .url)"
 fi
 
 # =============================================================================
@@ -339,6 +355,6 @@ echo ""
 if [ "$DRY_RUN" = true ]; then
     echo "🏁 Dry-run complete! No changes were committed or pushed."
 else
-    echo "🎉 All done! Site synced, processed, committed, built, and pushed to $BRANCH."
+    echo "🎉 All done!"
 fi
 
