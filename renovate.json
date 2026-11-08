@@ -1,0 +1,29 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":semanticCommits",
+    "helpers:pinGitHubActionDigestsToSemver"
+  ],
+  "timezone": "Asia/Kuala_Lumpur",
+  "schedule": ["* 0-6 * * 6"],
+  "git-submodules": {
+    "enabled": true
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Hugo version in the workflow and devcontainer",
+      "managerFilePatterns": [
+        "/^\\.github/workflows/.+\\.ya?ml$/",
+        "/^\\.devcontainer/Dockerfile$/"
+      ],
+      "matchStrings": [
+        "HUGO_VERSION\\s*[:=]\\s*['\"]?(?<currentValue>\\d+\\.\\d+\\.\\d+)['\"]?"
+      ],
+      "depNameTemplate": "gohugoio/hugo",
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^v(?<version>.*)$"
+    }
+  ]
+}
