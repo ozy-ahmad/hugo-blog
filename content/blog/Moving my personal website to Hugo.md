@@ -401,4 +401,4 @@ fi
 
 
 
-[broken](/blog/does-not-exist/)
+[broken](https://ahmadfakhrozy.com/blog/does-not-exist/)
