@@ -1,6 +1,6 @@
 # Hugo Blog Sync
 
-Sync Obsidian posts and images to Hugo, compress images, and deploy to GitHub.
+Sync Obsidian posts and images to Hugo, compress images, and open a pull request. GitHub Actions builds and checks it, Cloudflare Pages deploys a preview, and merging to `main` publishes it.
 
 ## Quick Start
 
@@ -8,7 +8,7 @@ Sync Obsidian posts and images to Hugo, compress images, and deploy to GitHub.
 ./sync.sh
 ```
 
-Preview changes without committing:
+Preview changes without creating a branch, commit or PR:
 
 ```bash
 ./sync.sh --dry-run
@@ -18,14 +18,15 @@ Preview changes without committing:
 
 ```mermaid
 flowchart LR
-    A[Obsidian Posts] -->|rsync| B[Hugo Posts]
-    C[Obsidian Attachments] -->|rsync| D[Hugo Images]
-    B --> E[Convert Links]
-    D --> F[Compress Images]
-    E --> G[Hugo Build]
-    F --> G
-    G --> H[Git Push Main]
+    O["Obsidian"] -->|sync.sh: rsync, compress, convert| BR["branch post/…"]
+    BR -->|gh pr create| PR["Pull request"]
+    PR -->|GitHub Actions| CI["build + link check"]
+    PR -->|Cloudflare Git integration| PV["preview: branch.hugo-blog-ecd.pages.dev"]
+    PR -->|merge| M["main"]
+    M -->|Cloudflare Git integration| PROD["ahmadfakhrozy.com"]
 ```
+
+`sync.sh` starts from a clean, up-to-date `main`, waits for the checks, prints the preview URL and asks before merging. Nothing is pushed to `main` directly.
 
 ## Configuration
 
@@ -38,20 +39,19 @@ These can be set as environment variables or edited in `sync.sh`:
 | `HUGO_POSTS` | Hugo posts destination | `/home/ozy/git/hugo-blog/content/blog` |
 | `HUGO_IMAGES` | Hugo images destination | `/home/ozy/git/hugo-blog/static/images` |
 | `MYREPO` | GitHub repository URL | `https://github.com/ozy-ahmad/hugo-blog` |
-| `BRANCH` | Git branch to push | `main` |
 
 ## Features
 
 - ✅ Syncs posts from Obsidian to Hugo
 - ✅ Syncs and compresses images (max 1200px, ~50% smaller)
 - ✅ Converts `![[image.png]]` → `![image](/images/image.png)`
-- ✅ Builds Hugo site
-- ✅ Commits and pushes to GitHub
+- ✅ Opens a PR; GitHub Actions builds, checks and Cloudflare deploys a preview
+- ✅ Waits for CI, shows the preview, and asks before merging
 - ✅ Dry-run mode for previewing changes
 
 ## Requirements
 
-- git, rsync, python3, hugo
+- git, rsync, python3, gh (logged in: `gh auth login`)
 - python-pillow (auto-installed via pacman)
 
 ## Theme Management
