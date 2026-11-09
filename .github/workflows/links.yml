@@ -53,6 +53,7 @@ jobs:
             --accept '200..=299,429'
             --exclude '^https?://(www\.)?(linkedin|x|twitter)\.com/'
             --exclude '^https?://(localhost|127\.0\.0\.1|192\.168\.)'
+            --exclude '^https?://(www\.)?(facebook\.com/sharer|reddit\.com/submit)'
             './public/**/*.html'
 
       - name: Open an issue for broken links
