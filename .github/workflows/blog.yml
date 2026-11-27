@@ -23,7 +23,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           submodules: recursive          # PaperMod is a git submodule
 
@@ -55,7 +55,7 @@ jobs:
       # Internal links only (offline): fast and never flaky
       - name: Check internal links
         if: github.event_name == 'pull_request'
-        uses: lycheeverse/lychee-action@v2
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2
         with:
           output: ${{ runner.temp }}/lychee/out.md
           fail: true
